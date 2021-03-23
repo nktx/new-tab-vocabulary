@@ -56,6 +56,15 @@ export default {
 </script>
 
 <style lang="scss">
+
+$phone-width: 375px;
+
+@mixin phone {
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -66,6 +75,11 @@ body {
   margin: 0;
   color: #fff;
   font-family: 'IBM Plex Sans', sans-serif;
+
+  @include phone {
+    background: #000;
+    align-items: start;
+  }
 }
 
 p {
@@ -74,14 +88,25 @@ p {
 
 .container {
   width: 30rem;
+
+  @include phone {
+    width: 80vw;
+    height: 80vw;
+    margin: 10vw;
+  }
 }
 
 .title {
-  margin: 1rem 0;
-  text-indent: -0.2rem;
+  margin: 1rem 0 1rem -0.2rem;
 
   &:first-letter {
     text-transform: uppercase;
+  }
+
+  span {
+    @include phone {
+      display: block;
+    }
   }
 }
 
@@ -91,12 +116,21 @@ p {
   line-height: 1;
   letter-spacing: 0.1rem;
   color: rgba(255,255,255);
+
+  @include phone {
+    word-wrap: break-word;
+  }
 }
 
 .pronunciation {
   font-size: .8rem;
   font-weight: 400;
   color: rgba(255,255,255,0.4);
+
+  @include phone {
+    margin: 2rem 0 0 .2rem;
+    font-size: 1.2rem;
+  }
 }
 
 .description {
@@ -107,12 +141,17 @@ p {
   margin: -0.4rem auto 0;
   color: rgba(255,255,255,0.9);
 
-  & span {
+  span {
     background-color: #fff;
     transition: 0.1s;
+
+    @include phone {
+      background-color: transparent;
+      font-size: 1.4rem;
+    }
   }
 
-  & span:hover {
+  span:hover {
     background-color: transparent;
   }
 }
@@ -124,6 +163,10 @@ p {
   letter-spacing: 0.05rem;
   font-family: 'IBM Plex Serif', sans-serif;
   margin: 2rem auto 0;
+
+  @include phone {
+    display: none;
+  }
 }
 
 .source {
@@ -133,6 +176,10 @@ p {
   letter-spacing: 0.05rem;
   font-family: 'IBM Plex Serif', sans-serif;
   margin: 0 auto 1rem;
+
+  @include phone {
+    display: none;
+  }
 }
 
 h1::selection,
